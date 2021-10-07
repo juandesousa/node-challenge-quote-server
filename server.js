@@ -18,6 +18,19 @@ app.get("/", function (request, response) {
 });
 
 //START OF YOUR CODE...
+app.get("/quotes", (req, res)=> {
+  res.send(quotes)
+})
+
+app.get("/quotes/random", (req, res)=> {
+  res.send(pickFromArray(quotes))
+})
+
+app.get("/quotes/search", (req, res)=> {
+  const value = req.query.term.toLowerCase();
+  const filterQuote = value ? quotes.filter(({quote}) => quote.toLowerCase().includes(value)): [];
+  res.send(filterQuote)
+})
 
 //...END OF YOUR CODE
 
