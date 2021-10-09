@@ -28,7 +28,7 @@ app.get("/quotes/random", (req, res)=> {
 
 app.get("/quotes/search", (req, res)=> {
   const value = req.query.term.toLowerCase();
-  const filterQuote = value ? quotes.filter(({quote}) => quote.toLowerCase().includes(value)): [];
+  const filterQuote = value ? quotes.filter(({quote, author}) => quote.toLowerCase().includes(value) || author.toLowerCase().includes(value)): [];
   res.send(filterQuote)
 })
 
